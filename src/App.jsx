@@ -1,10 +1,18 @@
-import {Routes , Route} from 'react-router-dom'
 import './App.css'
+import {Routes , Route} from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import GetInformation from './components/GetInformation'
+
 
 function App() {
 
   return (
-    
+    <main>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/GetInformation" element={<GetInformation />}></Route>
+      </Routes>
+    </main>
   )
 }
 
