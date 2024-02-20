@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Comments from "./Comments";
 
 export default function SingleCountry() {
   const [country, setCountry] = useState([]);
@@ -72,6 +73,9 @@ export default function SingleCountry() {
                 &larr; Back
               </Link>
             </article>
+            <div>
+              <Comments />
+            </div>
           </div>
         ))}
       </section>

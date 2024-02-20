@@ -1,0 +1,28 @@
+{
+  "profile": [
+    { "id": "1", "name": "Mateus", "password": "brasil" },
+    { "id": "2", "name": "Tushar", "password": "india" }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "name": "Mateus",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "name": "Mateus",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "feedback": [
+    {
+      "id": "1",
+      "text": "The homepage is not working properly",
+      "postId": "1"
+    },
+    { "id": "2", "text": "You should add more countries", "postId": "1" }
+  ]
+}
