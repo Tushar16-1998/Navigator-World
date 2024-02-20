@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Comments from "../components/Comments";
 import AddComment from "../components/AddComment";
+import { VStack , IconButton , useColorMode } from '@chakra-ui/react'
+import { FaSun , FaMoon } from 'react-icons/fa'
+
+
 export default function SingleCountry() {
   const [country, setCountry] = useState([]);
   const { name } = useParams();
@@ -24,8 +28,18 @@ export default function SingleCountry() {
     document.title = `Countries | ${name}`;
   }, [name]);
 
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
+    <VStack p={4}>
+    <IconButton 
+    icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}  
+    isRound='true' 
+    size='lg' 
+    alignSelf={'flex-end'}
+    onClick={toggleColorMode}
+    />
       <section className="p-8 md:py-0 max-w-7xl mx-auto">
         {country.map((item) => (
           <div
@@ -80,6 +94,7 @@ export default function SingleCountry() {
           </div>
         ))}
       </section>
+    </VStack>
     </>
   );
 }

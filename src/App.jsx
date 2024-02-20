@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import Countries from "../src/pages/Countries";
 import SingleCountry from "../src/pages/SingleCountry";
 import Comments from "./components/Comments";
+import Navbar from "./components/NavBar";
 
 const API_URL = "http://localhost:3000";
 

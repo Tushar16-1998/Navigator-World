@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import Article from "../components/Article";
+import Navbar from "../components/NavBar";
+import { VStack , IconButton , useColorMode } from '@chakra-ui/react'
+import { FaSun , FaMoon } from 'react-icons/fa'
 
 export default function Countries() {
   const [countries, setCountries] = useState([]);
@@ -77,8 +80,19 @@ export default function Countries() {
     filterByRegion();
   }
 
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
+    <VStack p={4}>
+     <IconButton 
+     icon={colorMode === 'light' ? <FaSun /> : <FaMoon />} 
+     isRound='true' 
+     size='lg' 
+     alignSelf={'flex-end'}
+     onClick={toggleColorMode}
+     />
+
       {!countries ? (
         <h1 className="text-gray-900 font-bold uppercase tracking-wide flex items-center justify-center text-center h-screen text-4xl dark:text-white">
           Loading...
@@ -87,11 +101,13 @@ export default function Countries() {
         <section className="container mx-auto p-8">
           {/* form */}
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8">
+            <Navbar />
             <form
               onSubmit={handleSearchCountry}
               autoComplete="off"
               className="max-w-4xl md:flex-1"
             >
+              
               <input
                 type="text"
                 name="search"
@@ -128,6 +144,7 @@ export default function Countries() {
           </div>
         </section>
       )}
+      </VStack>
     </>
   );
 }
