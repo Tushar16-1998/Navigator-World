@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Comments from "../components/Comments";
-
+import AddComment from "../components/AddComment";
 export default function SingleCountry() {
   const [country, setCountry] = useState([]);
   const { name } = useParams();
@@ -74,6 +74,7 @@ export default function SingleCountry() {
               </Link>
             </article>
             <div>
+              <AddComment />
               <Comments />
             </div>
           </div>
