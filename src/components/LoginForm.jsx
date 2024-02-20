@@ -1,8 +1,13 @@
-import React from 'react';
-import { Link, Button } from '@chakra-ui/react';
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react';
+import React from "react";
+import { Link, Button } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 
-const LoginForm = ({ setUsername, setPassword, handleLogin, handleGuestAccess }) => {
+const LoginForm = ({
+  setUsername,
+  setPassword,
+  handleLogin,
+  handleGuestAccess,
+}) => {
   return (
     <Card>
       <CardHeader>Login</CardHeader>
@@ -10,10 +15,7 @@ const LoginForm = ({ setUsername, setPassword, handleLogin, handleGuestAccess })
         <form>
           <label>
             Username:
-            <input
-              type="text"
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <input type="text" onChange={(e) => setUsername(e.target.value)} />
           </label>
           <br />
           <label>
@@ -24,14 +26,18 @@ const LoginForm = ({ setUsername, setPassword, handleLogin, handleGuestAccess })
             />
           </label>
           <br />
-          <Link to={"/GetInformation"}>
-            <Button variant="solid" colorScheme='green' onClick={handleLogin}>
+          <Link to={"/countries"}>
+            <Button variant="solid" colorScheme="green" onClick={handleLogin}>
               Login
             </Button>
           </Link>
-          
-          <Link to={"/GetInformation"}>
-            <Button variant="solid" colorScheme='green' onClick={handleGuestAccess}>
+
+          <Link to={"/countries"}>
+            <Button
+              variant="solid"
+              colorScheme="green"
+              onClick={handleGuestAccess}
+            >
               Guest Access
             </Button>
           </Link>

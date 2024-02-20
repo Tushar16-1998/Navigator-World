@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import {  Button, Text } from '@chakra-ui/react';
-import LoginForm from './LoginForm';
-import usersData from '../data/users.json';
-import { Link , Navigate} from 'react-router-dom';
-
+import React, { useState } from "react";
+import { Button, Text } from "@chakra-ui/react";
+import LoginForm from "./LoginForm";
+import usersData from "../data/users.json";
+import { Link, Navigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = () => {
@@ -18,19 +17,19 @@ const LoginPage = () => {
     if (user) {
       setLoggedIn(true);
     } else {
-      alert('Invalid username or password. Please try again.');
+      alert("Invalid username or password. Please try again.");
     }
   };
 
   const handleGuestAccess = () => {
-    const guestUser = usersData.find((user) => user.username === 'guest');
+    const guestUser = usersData.find((user) => user.username === "guest");
 
     if (guestUser) {
       setUsername(guestUser.username);
       setPassword(guestUser.password);
       setLoggedIn(true);
     } else {
-      alert('Guest user not found in the user data.');
+      alert("Guest user not found in the user data.");
     }
   };
 
@@ -38,7 +37,7 @@ const LoginPage = () => {
     <div>
       {loggedIn ? (
         <div>
-          <Navigate to={`/getinformation`} />
+          <Navigate to={`/countries`} />
         </div>
       ) : (
         <LoginForm
