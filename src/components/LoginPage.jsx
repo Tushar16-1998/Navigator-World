@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import {  Button, Text } from '@chakra-ui/react';
 import LoginForm from './LoginForm';
-import usersData from '../data/users.json'
-import { Link } from'react-router-dom';
+import usersData from '../data/users.json';
+import { Link , Navigate} from 'react-router-dom';
 
 
 const LoginPage = () => {
@@ -24,10 +25,10 @@ const LoginPage = () => {
   const handleGuestAccess = () => {
     const guestUser = usersData.find((user) => user.username === 'guest');
 
-    if (guestUser){ 
-        setUsername(guestUser.username);
-        setPassword(guestUser.password);
-        setLoggedIn(true);
+    if (guestUser) {
+      setUsername(guestUser.username);
+      setPassword(guestUser.password);
+      setLoggedIn(true);
     } else {
       alert('Guest user not found in the user data.');
     }
@@ -35,28 +36,29 @@ const LoginPage = () => {
 
   return (
     <div>
-        
-        {loggedIn ? (
-            <div>
-                <Link to='/GetInformation' />
-            <h1>Welcome, {username}!</h1>
-            <p><Text
-                bgGradient='linear(to-l, #7928CA, #FF0080)'
-                bgClip='text'
-                fontSize='6xl'
-                fontWeight='extrabold'>
-                    You are now logged in.</Text></p>
-            </div>
-        ) : (
-            
-            <LoginForm 
-            setUsername={setUsername}
-            setPassword={setPassword}
-            handleLogin={handleLogin}
-            handleGuestAccess={handleGuestAccess}
-            />
-            
-            )}
+      {loggedIn ? (
+        <div>
+          <Navigate to={`/getinformation`} />
+        </div>
+      ) : (
+        <LoginForm
+          setUsername={setUsername}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleGuestAccess={handleGuestAccess}
+        >
+          <Button
+            variant="solid"
+            colorScheme="blue"
+            onClick={handleGuestAccess}
+          >
+            Guest Access
+          </Button>
+          <Button variant="solid" colorScheme="blue" onClick={handleLogin}>
+            Login
+          </Button>
+        </LoginForm>
+      )}
     </div>
   );
 };
