@@ -11,10 +11,10 @@ export default function Comments() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/comments/${id}`)
+      .get(`${API_URL}/comments/`)
       .then((response) => setComment(response.data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [id]);
 
   const deleteComment = () => {
     axios.delete(`${API_URL}/comments/${id}`).then(() => {});
@@ -22,14 +22,13 @@ export default function Comments() {
 
   return (
     <div>
-      {comment && (
-        <article key={comment.postId}>
-          {" "}
-          <h3>{comment.name}</h3>
-          <p>{comment.text}</p>
-          <button>X</button>
+      {comment.map((text) => (
+        <article key={comment.id}>
+          <h3>{text.name}</h3>
+          <p>{text.text}</p>
+          <button onClick={deleteComment}>X</button>
         </article>
-      )}
+      ))}
     </div>
   );
 }
