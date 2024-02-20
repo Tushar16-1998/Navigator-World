@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Comments from "./Comments";
+import Comments from "../components/Comments";
 
 export default function SingleCountry() {
   const [country, setCountry] = useState([]);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Article from "./Article";
+import Article from "../components/Article";
 
 export default function Countries() {
   const [countries, setCountries] = useState([]);
