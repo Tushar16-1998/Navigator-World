@@ -11,6 +11,20 @@
       "password": "india"
     }
   ],
-  "comments": [],
-  "feedback": []
+  "comments": [
+    {
+      "id": "1744",
+      "name": "",
+      "text": "Anything",
+      "postId": ""
+    }
+  ],
+  "feedback": [
+    {
+      "id": "1584",
+      "name": "",
+      "text": "Cool",
+      "postId": ""
+    }
+  ]
 }
