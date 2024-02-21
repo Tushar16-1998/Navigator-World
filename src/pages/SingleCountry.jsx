@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Comments from "../components/Comments";
-import Navbar from '../components/NavBar'
+import Navbar from '../components/NavBar';
+import { Box, Image, Heading, Text, Link as ChakraLink, VStack, HStack, List, ListItem } from '@chakra-ui/react';
 
 export default function SingleCountry() {
   const [country, setCountry] = useState([]);
@@ -25,64 +26,75 @@ export default function SingleCountry() {
     document.title = `Countries | ${name}`;
   }, [name]);
 
-
   return (
     <>
-    <Navbar />
+      <Navbar />
 
-      <section className="p-8 md:py-0 max-w-7xl mx-auto">
+      <Box p={8} maxW="7xl" mx="auto">
         {country.map((item) => (
-          <div
-            key={item.population}
-            className="grid grid-cols-1 gap-8 md:grid-cols-2 md:place-items-center md:h-screen"
-          >
-            <article>
-              <img src={item.flags.svg} alt={item.name.common} />
-            </article>
+          <HStack key={item.population} spacing={8} justify="center" align="center">
+            <Box>
+              <Image src={item.flags.svg} alt={item.name.common} boxSize="200px" rounded="md" shadow="lg" />
+            </Box>
 
-            <article>
-              <h1 className="mb-8 font-bold text-gray-900 dark:text-white text-4xl lg:text-6xl">
+            <VStack align="start" spacing={4}>
+              <Heading fontWeight="bold" fontSize={{ base: '2xl', lg: '4xl' }} color="gray.900">
                 {item.name.official}
-              </h1>
+              </Heading>
 
-              <ul className="my-4 flex flex-col items-start justify-start gap-2 text-slate-700 dark:text-gray-400">
-                <li>Capital: {item.capital[0]}</li>
-                <li>Population: {item.population.toLocaleString()}</li>
-                <li>Region: {item.region}</li>
-                <li>Subregion: {item.subregion}</li>
-              </ul>
+              <List spacing={2} color="slate.700">
+                <ListItem>Capital: {item.capital[0]}</ListItem>
+                <ListItem>Population: {item.population.toLocaleString()}</ListItem>
+                <ListItem>Region: {item.region}</ListItem>
+                <ListItem>Subregion: {item.subregion}</ListItem>
+              </List>
 
               {item.borders && (
                 <>
-                  <h3 className="text-gray-900 font-bold text-lg mb-2 dark:text-white">
+                  <Heading mt={4} mb={2} fontWeight="bold" fontSize="lg" color="gray.900">
                     Borders:
-                  </h3>
-                  <ul className="flex flex-wrap items-start justify-start gap-2">
+                  </Heading>
+                  <HStack spacing={2}>
                     {item.borders.map((border, index) => (
-                      <li
+                      <Box
                         key={index}
-                        className="bg-white p-2 rounded text-xs tracking-wide shadow dark:bg-gray-800 dark:text-gray-400 text-gray-700"
+                        p={2}
+                        rounded="md"
+                        fontSize="xs"
+                        fontWeight="bold"
+                        bg="white"
+                        shadow="md"
+                        color="gray.700"
                       >
                         {border}
-                      </li>
+                      </Box>
                     ))}
-                  </ul>
+                  </HStack>
                 </>
               )}
 
-              <Link
+              <ChakraLink
+                as={Link}
                 to="/countries"
-                className="inline-block mt-8 bg-white py-2 px-6 rounded shadow text-gray-700 hover:bg-gray-200 transition-all duration-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-400"
+                mt={8}
+                bg="blue.500"
+                py={3}
+                px={6}
+                rounded="md"
+                shadow="md"
+                color="white"
+                _hover={{ bg: 'blue.600' }}
               >
                 &larr; Back
-              </Link>
-            </article>
-            <div>
+              </ChakraLink>
+            </VStack>
+
+            <Box>
               <Comments />
-            </div>
-          </div>
+            </Box>
+          </HStack>
         ))}
-      </section>
+      </Box>
     </>
   );
 }

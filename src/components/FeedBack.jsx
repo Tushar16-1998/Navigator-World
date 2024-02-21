@@ -56,7 +56,7 @@ function FeedBack () {
 
     return (
         <ChakraProvider>
-        <div>
+        <div style={{heigh: "1300px"}}>
         <Navbar />
             <form onSubmit={handleSubmit}>
 

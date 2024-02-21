@@ -1,30 +1,13 @@
 import { useState, useEffect } from "react";
+import { Box, Flex, Input, Button, Select, Text, SimpleGrid, Spinner } from "@chakra-ui/react";
 import Article from "../components/Article";
-import Navbar from '../components/NavBar'
+import Navbar from '../components/NavBar';
 
 export default function Countries() {
   const [countries, setCountries] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const regions = [
-    {
-      name: "Europe",
-    },
-    {
-      name: "Asia",
-    },
-    {
-      name: "Africa",
-    },
-    {
-      name: "Oceania",
-    },
-    {
-      name: "Americas",
-    },
-    {
-      name: "Antarctic",
-    },
-  ];
+  const [isLoading, setIsLoading] = useState(true);
+  const regions = ["Europe", "Asia", "Africa", "Oceania", "Americas", "Antarctic"];
 
   useEffect(() => {
     document.title = `Showing All Countries`;
@@ -36,6 +19,7 @@ export default function Countries() {
         const res = await fetch("https://restcountries.com/v3.1/all");
         const data = await res.json();
         setCountries(data);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -46,11 +30,13 @@ export default function Countries() {
 
   async function searchCountry() {
     try {
+      setIsLoading(true);
       const res = await fetch(
         `https://restcountries.com/v3.1/name/${searchText}`
       );
       const data = await res.json();
       setCountries(data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -58,11 +44,13 @@ export default function Countries() {
 
   async function filterByRegion(region) {
     try {
+      setIsLoading(true);
       const res = await fetch(
         `https://restcountries.com/v3.1/region/${region}`
       );
       const data = await res.json();
       setCountries(data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -78,62 +66,80 @@ export default function Countries() {
     filterByRegion();
   }
 
-
   return (
     <>
-    <Navbar />
+      <Navbar />
 
-      {!countries ? (
-        <h1 className="text-gray-900 font-bold uppercase tracking-wide flex items-center justify-center text-center h-screen text-4xl dark:text-white">
-          Loading...
-        </h1>
-      ) : (
-        <section className="container mx-auto p-8">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8">
+      <Box margin="auto" padding="8" maxWidth="1200px">
 
+        <Flex flexDirection={{ base: "column", md: "row" }} gap={{ base: "4", md: "8" }} justify="space-between">
 
-            <form
-              onSubmit={handleSearchCountry}
-              autoComplete="off"
-              className="max-w-4xl md:flex-1"
+          <form onSubmit={handleSearchCountry} autoComplete="off" flex="1" mr={{ base: "0", md: "4" }}>
+            <Input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Search for a country by its name"
+              required
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              padding="4"
+              color="gray.600"
+              placeholderColor="gray.400"
+              width={{ base: "100%", md: "70%" }}
+              boxShadow="md"
+              borderRadius="md"
+              outline="none"
+              backgroundColor="white"
+            />
+            <Button
+              type="submit"
+              mt={{ base: "2", md: "0" }}
+              colorScheme="teal"
+              variant="solid"
+              boxShadow="md"
+              borderRadius="md"
+              width={{ base: "100%", md: "30%" }}
             >
-              <input
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search for a country by its name"
-                required
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                className="py-3 px-4 text-gray-600 placeholder-gray-600 w-full shadow rounded outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-800 dark:focus:bg-gray-700 transition-all duration-200"
-              />
-            </form>
+              Search
+            </Button>
+          </form>
 
-            <form onSubmit={handleFilterByRegion}>
-              <select
-                name="filter-by-region"
-                id="filter-by-region"
-                className="w-52 py-3 px-4 outline-none shadow rounded text-gray-600 dark:text-gray-400 dark:bg-gray-800 dark:focus:bg-gray-700"
-                value={regions.name}
-                onChange={(e) => filterByRegion(e.target.value)}
-              >
-                {regions.map((region, index) => (
-                  <option key={index} value={region.name}>
-                    {region.name}
-                  </option>
-                ))}
-              </select>
-            </form>
-          </div>
+          <Select
+            name="filter-by-region"
+            id="filter-by-region"
+            width={{ base: "100%", md: "30%" }}
+            padding="4"
+            outline="none"
+            boxShadow="md"
+            borderRadius="md"
+            color="gray.600"
+            backgroundColor="white"
+            value={regions.name}
+            onChange={(e) => filterByRegion(e.target.value)}
+          >
+            {regions.map((region, index) => (
+              <option key={index} value={region}>
+                {region}
+              </option>
+            ))}
+          </Select>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+        </Flex>
+
+        {isLoading ? (
+          <Flex justify="center" align="center" height="60vh">
+            <Spinner size="xl" />
+          </Flex>
+        ) : (
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} gap="8">
             {countries.map((country) => (
               <Article key={country.name.common} {...country} />
             ))}
-          </div>
-        </section>
-      )}
+          </SimpleGrid>
+        )}
 
+      </Box>
     </>
   );
 }
