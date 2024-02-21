@@ -48,7 +48,7 @@ const LoginPage = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <div>
+    <div style={{height: "605px"}}>
       <VStack p={4}>
         <IconButton
           icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
