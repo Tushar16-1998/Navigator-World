@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Text } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 import usersData from "../data/users.json";
 import { Link, Navigate } from "react-router-dom";
 import { VStack, IconButton, useColorMode } from "@chakra-ui/react";
 import { FaSun, FaMoon } from "react-icons/fa";
+import axios from "axios";
 
+const API_URL = "http://localhost:3000";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    axios.get(`${API_URL}/profile`).then((response) => {
+      const user = response.data;
+      set;
+    });
+  }, []);
 
   const handleLogin = () => {
     const user = usersData.find(
@@ -41,7 +50,6 @@ const LoginPage = () => {
   return (
     <div>
       <VStack p={4}>
-
         <IconButton
           icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
           isRound="true"

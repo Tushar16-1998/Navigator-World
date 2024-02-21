@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "https://backendcountries-qarw.onrender.com";
 
 export default function Comments() {
   const [comments, setComments] = useState([]);

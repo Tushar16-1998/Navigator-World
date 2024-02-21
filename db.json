@@ -2,12 +2,12 @@
   "profile": [
     {
       "id": "1",
-      "name": "Mateus",
+      "username": "Mateus",
       "password": "brasil"
     },
     {
       "id": "2",
-      "name": "Tushar",
+      "username": "Tushar",
       "password": "india"
     }
   ],
