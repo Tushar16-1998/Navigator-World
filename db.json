@@ -11,42 +11,6 @@
       "password": "india"
     }
   ],
-  "comments": [
-    {
-      "id": "2838",
-      "name": "",
-      "text": "Not working properly",
-      "postId": ""
-    },
-    {
-      "id": "1c33",
-      "name": "",
-      "text": "Trying to fix",
-      "postId": ""
-    },
-    {
-      "id": "eb3f",
-      "name": "",
-      "text": "asdas",
-      "postId": ""
-    },
-    {
-      "id": "6940",
-      "name": "",
-      "text": "Insert your comment here!",
-      "postId": ""
-    }
-  ],
-  "feedback": [
-    {
-      "id": "1",
-      "text": "The homepage is not working properly",
-      "postId": "1"
-    },
-    {
-      "id": "2",
-      "text": "You should add more countries",
-      "postId": "1"
-    }
-  ]
+  "comments": [],
+  "feedback": []
 }

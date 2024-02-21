@@ -3,6 +3,8 @@ import { Button, Text } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 import usersData from "../data/users.json";
 import { Link, Navigate } from "react-router-dom";
+import { VStack, IconButton, useColorMode } from "@chakra-ui/react";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 
 const LoginPage = () => {
@@ -34,31 +36,43 @@ const LoginPage = () => {
     }
   };
 
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <div>
-      {loggedIn ? (
-        <div>
-          <Navigate to={`/countries`} />
-        </div>
-      ) : (
-        <LoginForm
-          setUsername={setUsername}
-          setPassword={setPassword}
-          handleLogin={handleLogin}
-          handleGuestAccess={handleGuestAccess}
-        >
-          <Button
-            variant="solid"
-            colorScheme="blue"
-            onClick={handleGuestAccess}
+      <VStack p={4}>
+
+        <IconButton
+          icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
+          isRound="true"
+          size="lg"
+          alignSelf={"flex-end"}
+          onClick={toggleColorMode}
+        />
+        {loggedIn ? (
+          <div>
+            <Navigate to={`/countries`} />
+          </div>
+        ) : (
+          <LoginForm
+            setUsername={setUsername}
+            setPassword={setPassword}
+            handleLogin={handleLogin}
+            handleGuestAccess={handleGuestAccess}
           >
-            Guest Access
-          </Button>
-          <Button variant="solid" colorScheme="blue" onClick={handleLogin}>
-            Login
-          </Button>
-        </LoginForm>
-      )}
+            <Button
+              variant="solid"
+              colorScheme="blue"
+              onClick={handleGuestAccess}
+            >
+              Guest Access
+            </Button>
+            <Button variant="solid" colorScheme="blue" onClick={handleLogin}>
+              Login
+            </Button>
+          </LoginForm>
+        )}
+      </VStack>
     </div>
   );
 };
