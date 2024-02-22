@@ -28,6 +28,7 @@ export default function SingleCountry() {
 
   return (
     <>
+    <div style={{height: "665px"}}>
       <Navbar />
 
       <Box p={8} maxW="7xl" mx="auto">
@@ -95,6 +96,7 @@ export default function SingleCountry() {
           </HStack>
         ))}
       </Box>
+    </div>
     </>
   );
 }

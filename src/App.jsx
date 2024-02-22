@@ -2,9 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Countries from "../src/pages/Countries";
 import SingleCountry from "../src/pages/SingleCountry";
-import Comments from "./components/Comments";
-import Navbar from "./components/NavBar";
 import FeedBack from "./components/FeedBack";
+import About from "./components/About";
+import TusharDetails from "./components/TusharDetails";
 
 const API_URL = "http://localhost:3000";
 
@@ -17,6 +17,8 @@ function App() {
         <Route path="/countries" element={<Countries />} />
         <Route path="/:name" element={<SingleCountry />} />
         <Route path="/feedback" element={<FeedBack />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/tushar" element={<TusharDetails />} />
       </Routes>
     </main>
   );

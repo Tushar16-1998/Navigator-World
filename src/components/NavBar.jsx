@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { VStack, IconButton, useColorMode } from "@chakra-ui/react";
 import { FaSun, FaMoon } from "react-icons/fa";
 
+
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -24,6 +25,9 @@ const Navbar = () => {
           {/* <hr style={{ width: "100%", margin: 0 }} /> */}
           <Link to="/feedback" style={{ textDecoration: "none", color: "inherit" }}>
             Feedback
+          </Link>
+          <Link to="/about" style={{ textDecoration: "none", color: "inherit" }}>
+            About
           </Link>
       </nav>
     </VStack>
