@@ -1,8 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import { VStack, IconButton, useColorMode } from "@chakra-ui/react";
 import { FaSun, FaMoon } from "react-icons/fa";
-
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -15,20 +14,27 @@ const Navbar = () => {
         size="lg"
         onClick={toggleColorMode}
       />
-      <nav style={{ width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around" }}>
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-            Home
-          </Link>
-          {/* <hr style={{ width: "100%", margin: 0 }} /> */}
-          <Link to="/feedback" style={{ textDecoration: "none", color: "inherit" }}>
-            Feedback
-          </Link>
-          <Link to="/about" style={{ textDecoration: "none", color: "inherit" }}>
-            About
-          </Link>
+      <nav
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <strong>Home</strong>
+        </Link>
+        {/* <hr style={{ width: "100%", margin: 0 }} /> */}
+        <Link
+          to="/feedback"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <strong>Feedback</strong>
+        </Link>
+        <Link to="/about" style={{ textDecoration: "none", color: "inherit" }}>
+          <strong>About</strong>
+        </Link>
       </nav>
     </VStack>
   );

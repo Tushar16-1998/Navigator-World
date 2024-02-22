@@ -93,10 +93,14 @@ export default function Countries() {
           justify="space-between"
         >
           <form
+            style={{
+              padding: "16px",
+              display: "flex",
+              justifyContent: "space-between",
+              width: "500px",
+            }}
             onSubmit={handleSearchCountry}
             autoComplete="off"
-            flex="1"
-            mr={{ base: "0", md: "4" }}
           >
             <Input
               type="text"
@@ -107,7 +111,7 @@ export default function Countries() {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               padding="4"
-              width={{ base: "100%", md: "70%" }}
+              w="380px"
               boxShadow="md"
               borderRadius="md"
               outline="none"
@@ -119,7 +123,7 @@ export default function Countries() {
               variant="solid"
               boxShadow="md"
               borderRadius="md"
-              width={{ base: "100%", md: "30%" }}
+              width="70px"
             >
               Search
             </Button>
@@ -128,8 +132,8 @@ export default function Countries() {
           <Select
             name="filter-by-region"
             id="filter-by-region"
-            width={{ base: "100%", md: "30%" }}
-            padding="4"
+            w="150px"
+            m={4}
             outline="none"
             boxShadow="md"
             borderRadius="md"

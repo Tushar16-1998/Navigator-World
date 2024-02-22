@@ -31,9 +31,9 @@ export default function Article({
               {name.common}
             </Heading>
             <List spacing={2} mt="2">
-              <ListItem>Population: {population.toLocaleString()}</ListItem>
+              {/*               <ListItem>Population: {population.toLocaleString()}</ListItem> */}
               <ListItem>Region: {region}</ListItem>
-              <ListItem>Subregion: {subregion}</ListItem>
+              {/* <ListItem>Subregion: {subregion}</ListItem> */}
             </List>
           </Box>
         </Box>
