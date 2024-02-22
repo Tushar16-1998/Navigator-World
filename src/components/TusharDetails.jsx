@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const TusharDetails = () => {
+function TusharDetails () {
   return (
     <div>
       <h1>Tushar Sunder</h1>
@@ -13,6 +14,9 @@ const TusharDetails = () => {
       <ul><a href="https://github.com/Tushar16-1998" >My github</a></ul>
       <ul><a href="https://www.linkedin.com/in/tushar-sunder-628690295?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">My linkedin</a></ul>
       <ul><a href = "mailto:tusharsunder2@gmail.com" target="_blank" >mail</a></ul>
+      <Link to='/about'>
+        Back
+      </Link>
     </div>
   );
 };

@@ -59,9 +59,7 @@ function About() {
             </Link>
         </ListItem>
         <ListItem>
-          <strong>
-            <Link to='/mateus'>Mateus Lima</Link>
-          </strong>
+            <Link to='/mateus'><strong>Mateus Lima</strong></Link>
         </ListItem>
       </List>
       <Link to='/countries' display="block" mt={6} color="teal.500" fontSize="lg" fontWeight="bold">
