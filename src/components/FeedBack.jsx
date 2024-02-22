@@ -22,6 +22,9 @@ function FeedBack() {
   const [feedback, setFeedback] = useState([]);
   const { id } = useParams();
   const [text, setText] = useState("");
+  const [name, setName] = useState("Guest User");
+
+  const pack = { name, text };
 
   const getFeedback = () => {
     axios
@@ -48,10 +51,11 @@ function FeedBack() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${API_URL}/feedback`, { text })
+      .post(`${API_URL}/feedback`, pack)
       .then(() => {
         setText("");
         getFeedback();
+        setName();
       })
       .catch((error) => console.log(error));
   };
@@ -67,8 +71,16 @@ function FeedBack() {
             </Heading>
             <form onSubmit={handleSubmit} style={{ width: "100%" }}>
               <FormControl>
-                <FormLabel>Feedback:</FormLabel>
-                <Input
+                {/* <FormLabel fontWeight="bold">Feedback:</FormLabel> */}
+                <textarea
+                  style={{
+                    border: "1px solid",
+                    borderRadius: "5px",
+                    minHeight: "150px",
+                    minWidth: "600px",
+                    overflow: "hidden",
+                    resize: "both",
+                  }}
                   required
                   value={text}
                   type="text"
@@ -90,7 +102,8 @@ function FeedBack() {
                 boxShadow="md"
                 textAlign="left"
               >
-                <Text fontWeight="bold">{element.text}</Text>
+                <Text fontWeight="bold">{element.name}</Text>
+                <Text>{element.text}</Text>
                 <Button
                   onClick={() => deleteFeedback(element.id)}
                   mt={2}
@@ -101,9 +114,11 @@ function FeedBack() {
                 </Button>
               </Box>
             ))}
-            <ChakraLink as={Link} to="/countries" mt={8} color="teal.500">
-              Back to Countries
-            </ChakraLink>
+            <Button display={"flex"} colorScheme="teal" alignItems={"center"}>
+              <ChakraLink as={Link} to="/countries" fontWeight="bold">
+                Back to Countries
+              </ChakraLink>
+            </Button>
           </VStack>
         </Box>
       </ChakraProvider>

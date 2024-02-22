@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { ChakraProvider, Text, Button, Flex } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Text,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+} from "@chakra-ui/react";
 
 const API_URL = "https://backendcountries-qarw.onrender.com";
 
 export default function Comments() {
   const [comments, setComments] = useState([]);
   const { id } = useParams();
-  const [name, setName] = useState("");
+  const [name, setName] = useState("Guest User");
   const [text, setText] = useState("");
   const [postId, setPostID] = useState("");
 
@@ -46,7 +54,6 @@ export default function Comments() {
       .then((response) => {
         firstSubmit;
         // After submitting a new comment, fetch the updated comments
-        setName("Guest User");
         getComments();
       })
       .catch((error) => {
@@ -58,39 +65,55 @@ export default function Comments() {
     <Flex direction={"column"}>
       <ChakraProvider>
         <form onSubmit={handleSubmit}>
-          <label alignSelf={"top"}>
-            Comment:{" "}
+          <FormControl display={"flex"}>
+            <FormLabel fontWeight="bold" alignSelf={"flex-start"}>
+              Comment:{" "}
+            </FormLabel>
             <textarea
+              style={{
+                border: "1px solid",
+                borderRadius: "5px",
+                minHeight: "100px",
+                minWidth: "400px",
+                overflow: "hidden",
+                resize: "both",
+              }}
               required
               value={text}
               type="text"
               onChange={(e) => setText(e.target.value)}
               placeholder="Insert your comment"
             />
-          </label>
-          <button type="submit">Submit</button>
+            <Button colorScheme="teal" type="submit">
+              Submit
+            </Button>
+          </FormControl>
         </form>
         {comments.map((comment) => (
           <Flex
             borderWidth="1px"
             borderRadius="lg"
+            margin={"10px"}
             p={4}
             w="100%"
-            boxShadow="md"
+            boxShadow="dark-lg"
             textAlign="left"
             key={comment.id}
             direction={"column"}
           >
-            <Button
-              onClick={() => deleteComment(comment.id)}
-              mt={2}
-              colorScheme="red"
-              size="sm"
-              alignSelf={"flex-end"}
-            >
-              X
-            </Button>
-            <Text fontWeight="bold">{comment.name}</Text>
+            <Flex justify={"space-between"}>
+              <Text fontWeight="bold">{comment.name}</Text>
+              <Button
+                onClick={() => deleteComment(comment.id)}
+                mt={2}
+                colorScheme="red"
+                size="sm"
+                alignSelf={"end"}
+              >
+                X
+              </Button>
+            </Flex>
+
             <p>{comment.text}</p>
           </Flex>
         ))}

@@ -47,18 +47,15 @@ export default function SingleCountry() {
             <HStack
               key={item.population}
               spacing={8}
-              justify="center"
+              justify="space-around"
               align="center"
             >
-              <Box>
-                <Image
-                  src={item.flags.svg}
-                  alt={item.name.common}
-                  boxSize="200px"
-                  rounded="md"
-                  shadow="lg"
-                />
-              </Box>
+              <Image
+                src={item.flags.svg}
+                alt={item.name.common}
+                boxSize="450px"
+                rounded="md"
+              />
 
               <VStack align="start" spacing={4}>
                 <Heading
@@ -68,13 +65,26 @@ export default function SingleCountry() {
                   {item.name.official}
                 </Heading>
 
-                <List spacing={2} color="slate.700">
-                  <ListItem>Capital: {item.capital[0]}</ListItem>
+                <List
+                  display={"flex"}
+                  flexDirection={"column"}
+                  alignItems={"flex-start"}
+                  spacing={2}
+                  color="slate.700"
+                >
                   <ListItem>
-                    Population: {item.population.toLocaleString()}
+                    <strong>Capital:</strong> {item.capital[0]}
                   </ListItem>
-                  <ListItem>Region: {item.region}</ListItem>
-                  <ListItem>Subregion: {item.subregion}</ListItem>
+                  <ListItem>
+                    <strong>Population:</strong>{" "}
+                    {item.population.toLocaleString()}
+                  </ListItem>
+                  <ListItem>
+                    <strong>Region:</strong> {item.region}
+                  </ListItem>
+                  <ListItem>
+                    <strong>Subregion:</strong> {item.subregion}
+                  </ListItem>
                 </List>
 
                 {item.borders && (
@@ -90,7 +100,7 @@ export default function SingleCountry() {
                           rounded="md"
                           fontSize="xs"
                           fontWeight="bold"
-                          shadow="md"
+                          shadow="dark-lg"
                         >
                           {border}
                         </Box>
@@ -103,13 +113,12 @@ export default function SingleCountry() {
                   as={Link}
                   to="/countries"
                   mt={8}
-                  bg="blue.500"
+                  bg="teal"
                   py={3}
                   px={6}
                   rounded="md"
-                  shadow="md"
+                  shadow="dark-lg"
                   color="white"
-                  _hover={{ bg: "blue.600" }}
                 >
                   &larr; Back
                 </ChakraLink>
