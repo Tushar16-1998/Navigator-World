@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Box, Image, Heading, Text, List, ListItem } from "@chakra-ui/react";
 
 export default function Article({
   flags,
@@ -11,19 +12,31 @@ export default function Article({
   return (
     <>
       <Link to={`/${name.common}`}>
-        <article className="bg-white hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-200 rounded-lg shadow overflow-hidden">
-          <img src={flags.svg} alt="" className="md:h-72 w-full object-cover" />
-          <div className="p-4">
-            <h2 className="font-bold text-lg text-gray-900 dark:text-white mb-2">
+        <Box
+          className="soli"
+          transition="all 0.2s"
+          rounded="lg"
+          shadow="dark-lg"
+          overflow="hidden"
+        >
+          <Image
+            src={flags.svg}
+            alt=""
+            height="72"
+            width="full"
+            objectFit="cover"
+          />
+          <Box p="4">
+            <Heading as="h2" fontSize="lg" fontWeight="bold" mb="2">
               {name.common}
-            </h2>
-            <ul className="flex flex-col items-start justify-start gap-2 dark:text-gray-400">
-              <li>Population: {population.toLocaleString()}</li>
-              <li>Region: {region}</li>
-              <li>Subregion: {subregion}</li>
-            </ul>
-          </div>
-        </article>
+            </Heading>
+            <List spacing={2} mt="2">
+              <ListItem>Population: {population.toLocaleString()}</ListItem>
+              <ListItem>Region: {region}</ListItem>
+              <ListItem>Subregion: {subregion}</ListItem>
+            </List>
+          </Box>
+        </Box>
       </Link>
     </>
   );

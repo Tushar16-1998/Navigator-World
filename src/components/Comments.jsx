@@ -76,7 +76,6 @@ export default function Comments() {
             borderRadius="lg"
             p={4}
             w="100%"
-            bg="white"
             boxShadow="md"
             textAlign="left"
             key={comment.id}
