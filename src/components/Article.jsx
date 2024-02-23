@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Image, Heading, Text, List, ListItem } from "@chakra-ui/react";
+import { Box, Image, Heading, List, ListItem } from "@chakra-ui/react";
 
 export default function Article({
   flags,
@@ -11,7 +11,7 @@ export default function Article({
 }) {
   return (
     <>
-      <Link to={`/${name.common}`}>
+      <Link to={`/country/${name.common}`}>
         <Box
           className="soli"
           transition="all 0.2s"

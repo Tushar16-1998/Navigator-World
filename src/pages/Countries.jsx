@@ -11,6 +11,8 @@ import {
 } from "@chakra-ui/react";
 import Article from "../components/Article";
 import Navbar from "../components/NavBar";
+import { useNavigate as navigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Countries() {
   const [countries, setCountries] = useState([]);
@@ -38,24 +40,26 @@ export default function Countries() {
         setIsLoading(false);
       } catch (error) {
         console.error(error);
+        navigate("/*");
       }
     };
 
     getCountries();
   }, []);
 
-  async function searchCountry() {
-    try {
-      setIsLoading(true);
-      const res = await fetch(
-        `https://restcountries.com/v3.1/name/${searchText}`
-      );
-      const data = await res.json();
-      setCountries(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
+  function searchCountry() {
+    setIsLoading(true);
+
+    axios
+      .get(`https://restcountries.com/v3.1/name/${searchText}`)
+      .then((response) => {
+        const data = response.data;
+        setCountries(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   async function filterByRegion(region) {
@@ -77,11 +81,6 @@ export default function Countries() {
     searchCountry();
   }
 
-  /*   function handleFilterByRegion(e) {
-    e.preventDefault();
-    filterByRegion();
-  }
- */
   return (
     <>
       <Navbar />

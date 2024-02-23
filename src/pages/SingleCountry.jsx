@@ -6,7 +6,6 @@ import {
   Box,
   Image,
   Heading,
-  Text,
   Link as ChakraLink,
   VStack,
   HStack,
@@ -53,7 +52,8 @@ export default function SingleCountry() {
               <Image
                 src={item.flags.svg}
                 alt={item.name.common}
-                boxSize="450px"
+                width={"400px"}
+                height={"auto"}
                 rounded="md"
               />
 
