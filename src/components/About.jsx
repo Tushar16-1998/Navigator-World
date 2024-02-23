@@ -46,6 +46,7 @@ function About() {
         </List>
 
         <ChakraLink
+          as = {Link}
           display={"flex"}
           to='/countries'
           mt={3}
