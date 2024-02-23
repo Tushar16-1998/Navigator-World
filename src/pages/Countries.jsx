@@ -77,11 +77,11 @@ export default function Countries() {
     searchCountry();
   }
 
-  function handleFilterByRegion(e) {
+  /*   function handleFilterByRegion(e) {
     e.preventDefault();
     filterByRegion();
   }
-
+ */
   return (
     <>
       <Navbar />
