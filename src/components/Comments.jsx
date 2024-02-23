@@ -84,7 +84,7 @@ export default function Comments() {
               onChange={(e) => setText(e.target.value)}
               placeholder="Insert your comment"
             />
-            <Button colorScheme="teal" type="submit">
+            <Button ml={"20px"} colorScheme="teal" type="submit">
               Submit
             </Button>
           </FormControl>

@@ -1,13 +1,29 @@
 import { useState, useEffect } from "react";
-import { Box, Flex, Input, Button, Select, Text, SimpleGrid, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Input,
+  Button,
+  Select,
+  Text,
+  SimpleGrid,
+  Spinner,
+} from "@chakra-ui/react";
 import Article from "../components/Article";
-import Navbar from '../components/NavBar';
+import Navbar from "../components/NavBar";
 
 export default function Countries() {
   const [countries, setCountries] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const regions = ["Europe", "Asia", "Africa", "Oceania", "Americas", "Antarctic"];
+  const regions = [
+    "Europe",
+    "Asia",
+    "Africa",
+    "Oceania",
+    "Americas",
+    "Antarctic",
+  ];
 
   useEffect(() => {
     document.title = `Showing All Countries`;
@@ -99,7 +115,6 @@ export default function Countries() {
               boxShadow="md"
               borderRadius="md"
               outline="none"
-              backgroundColor="white"
             />
             <Button
               type="submit"
@@ -120,10 +135,9 @@ export default function Countries() {
             w="150px"
             m={4}
             outline="none"
-            boxShadow="md"
+            boxShadow="dark-lg"
             borderRadius="md"
             color="gray.600"
-            backgroundColor="white"
             value={regions.name}
             onChange={(e) => filterByRegion(e.target.value)}
           >
@@ -133,7 +147,6 @@ export default function Countries() {
               </option>
             ))}
           </Select>
-
         </Flex>
 
         {isLoading ? (
@@ -147,7 +160,6 @@ export default function Countries() {
             ))}
           </SimpleGrid>
         )}
-
       </Box>
     </>
   );
